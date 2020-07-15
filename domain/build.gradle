@@ -1,0 +1,14 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    api deps.dataresource.dataresource
+    api deps.coroutines.core
+    api deps.coroutines.android
+}
+
+sourceCompatibility = "1.7"
+targetCompatibility = "1.7"

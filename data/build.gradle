@@ -1,0 +1,17 @@
+apply plugin: 'java-library'
+apply plugin: 'kotlin'
+apply plugin: 'kotlin-kapt'
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    api deps.room.roomRuntime
+    api deps.room.roomKtx
+    kapt deps.room.roomCompiler
+
+    implementation project(":domain")
+}
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
