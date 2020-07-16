@@ -19,7 +19,12 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        testInstrumentationRunner "com.baileytye.hiltplayground.CustomTestRunner"
+    }
+
+    packagingOptions {
+        exclude 'META-INF/LICENSE.md'
+        exclude 'META-INF/LICENSE-notice.md'
     }
 
     //TODO: Step 2 java 8
@@ -51,9 +56,15 @@ dependencies {
     implementation 'androidx.appcompat:appcompat:1.1.0'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
-    testImplementation 'junit:junit:4.12'
+    testImplementation 'junit:junit:4.13'
     androidTestImplementation 'androidx.test.ext:junit:1.1.1'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+    // For instrumented tests.
+    androidTestImplementation 'com.google.dagger:hilt-android-testing:2.28-alpha'
+    androidTestImplementation "org.mockito:mockito-android:3.3.3"
+    // ...with Kotlin.
+    kaptAndroidTest 'com.google.dagger:hilt-android-compiler:2.28-alpha'
+    debugImplementation "androidx.fragment:fragment-testing:1.3.0-alpha06"
 
     implementation project(":data")
     implementation project(":domain")
@@ -70,6 +81,11 @@ dependencies {
 
     api deps.navigation.navigationFragment
     api deps.navigation.navigationUi
+
+    testImplementation deps.mockk.core
+    testImplementation deps.truth.core
+
+    androidTestImplementation deps.navigation.test
 }
 
 //TODO: Step 1 add dependencies
