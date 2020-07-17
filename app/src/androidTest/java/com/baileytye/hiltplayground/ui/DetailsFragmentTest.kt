@@ -9,7 +9,6 @@ import androidx.test.espresso.assertion.ViewAssertions.matches
 import androidx.test.espresso.matcher.ViewMatchers.isDisplayed
 import androidx.test.espresso.matcher.ViewMatchers.withId
 import com.baileytye.hiltplayground.R
-import com.baileytye.hiltplayground.di.StringModule
 import com.baileytye.hiltplayground.launchFragmentInHiltContainer
 import dagger.hilt.android.testing.HiltAndroidRule
 import dagger.hilt.android.testing.HiltAndroidTest
@@ -19,7 +18,7 @@ import org.junit.Rule
 import org.junit.Test
 
 @HiltAndroidTest
-@UninstallModules(StringModule::class)
+@UninstallModules(com.baileytye.dataandroid.di.StringModule::class)
 class DetailsFragmentTest {
 
     @get:Rule
@@ -34,7 +33,7 @@ class DetailsFragmentTest {
         )
         navController.setGraph(R.navigation.nav_graph)
 
-        launchFragmentInHiltContainer<DetailsFragment>(
+        launchFragmentInHiltContainer<com.baileytye.home.DetailsFragment>(
             fragmentArgs = Bundle().apply {
                 putString("string", "value")
             },

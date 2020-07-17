@@ -15,12 +15,15 @@ import org.junit.jupiter.api.TestInstance
 internal class DetailsViewModelTest {
 
     private val useCase = mockk<GetStringUseCase>()
-    private lateinit var detailsViewModel: DetailsViewModel
+    private lateinit var detailsViewModel: com.baileytye.home.ui.DetailsViewModel
 
     @BeforeAll
     internal fun setUp() {
         every { useCase() } returns (flowOf(Result.Success("use case")))
-        detailsViewModel = DetailsViewModel(SavedStateHandle(mapOf("string" to "test")), useCase)
+        detailsViewModel = com.baileytye.home.ui.DetailsViewModel(
+            SavedStateHandle(mapOf("string" to "test")),
+            useCase
+        )
     }
 
     @Test
